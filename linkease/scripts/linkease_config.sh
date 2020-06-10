@@ -1,10 +1,10 @@
 #!/bin/sh
-eval `dbus export easyexplorer`
+eval `dbus export linkease`
 source /koolshare/scripts/base.sh
 alias echo_date='echo $(date +%Y年%m月%d日\ %X):'
 
-BIN=/koolshare/bin/easy-explorer
-PID_FILE=/var/run/easy-explorer.pid
+BIN=/koolshare/bin/linkease
+PID_FILE=/var/run/linkease.pid
 
 if [ "$(cat /proc/sys/vm/overcommit_memory)"x != "0"x ];then
     echo 0 > /proc/sys/vm/overcommit_memory
@@ -18,56 +18,56 @@ fun_ntp_sync(){
         ntpclient -h ntp1.aliyun.com -i3 -l -s > /dev/null 2>&1 
     fi
 }
-fun_easyexplorer_start_stop(){
-    if [ "${easyexplorer_enable}"x = "1"x ];then
-        killall easy-explorer
-        start-stop-daemon -S -q -b -m -p ${PID_FILE} -x ${BIN} -- -c /tmp -u ${easyexplorer_token} -share ${easyexplorer_dir}
+fun_linkease_start_stop(){
+    if [ "${linkease_enable}"x = "1"x ];then
+        killall linkease
+        start-stop-daemon -S -q -b -m -p ${PID_FILE} -x ${BIN} -- -c /tmp -u ${linkease_token} -share ${linkease_dir}
     else
-        killall easy-explorer
+        killall linkease
     fi
 }
 
-fun_easyexplorer_iptables(){
-    easyexplorer_iptables_num=$(iptables -nL INPUT | grep -ci "INPUT_EasyExplorer")
-    if [ "${easyexplorer_enable}"x = "1"x ];then
-        if [ "${easyexplorer_iptables_num}"x = "0"x ];then
-            iptables -I INPUT -j INPUT_EasyExplorer
+fun_linkease_iptables(){
+    linkease_iptables_num=$(iptables -nL INPUT | grep -ci "INPUT_LinkEase")
+    if [ "${linkease_enable}"x = "1"x ];then
+        if [ "${linkease_iptables_num}"x = "0"x ];then
+            iptables -I INPUT -j INPUT_LinkEase
         fi
-        INPUT_EasyExplorer_num=$(iptables -nL INPUT_EasyExplorer | grep -ic "tcp dpt:2300")
-        if [ "${INPUT_EasyExplorer_num}"x = "0"x ];then
-            iptables -N INPUT_EasyExplorer
-            iptables -t filter -I INPUT_EasyExplorer -p tcp --dport 2300 -j ACCEPT
+        INPUT_LinkEase_num=$(iptables -nL INPUT_LinkEase | grep -ic "tcp dpt:8897")
+        if [ "${INPUT_LinkEase_num}"x = "0"x ];then
+            iptables -N INPUT_LinkEase
+            iptables -t filter -I INPUT_LinkEase -p tcp --dport 8897 -j ACCEPT
         fi
     else
-        while [[ "${easyexplorer_iptables_num}" != 0 ]]  
+        while [[ "${linkease_iptables_num}" != 0 ]]  
         do
-            iptables -D INPUT -j INPUT_EasyExplorer
-            easyexplorer_iptables_num=$(expr ${easyexplorer_iptables_num} - 1)
+            iptables -D INPUT -j INPUT_LinkEase
+            linkease_iptables_num=$(expr ${linkease_iptables_num} - 1)
         done
     fi
 }
 
-fun_easyexplorer_nat_start(){
-    if [ "${easyexplorer_enable}"x = "1"x ];then
+fun_linkease_nat_start(){
+    if [ "${linkease_enable}"x = "1"x ];then
         echo_date 添加nat-start触发事件...
-        dbus set __event__onnatstart_easyexplorer="/koolshare/scripts/easyexplorer_config.sh"
+        dbus set __event__onnatstart_linkease="/koolshare/scripts/linkease_config.sh"
     else
         echo_date 删除nat-start触发...
-        dbus remove __event__onnatstart_easyexplorer
+        dbus remove __event__onnatstart_linkease
     fi
 }
 
 case ${ACTION} in
 start)
     fun_ntp_sync
-    fun_easyexplorer_start_stop
-    fun_easyexplorer_iptables
-    fun_easyexplorer_nat_start
+    fun_linkease_start_stop
+    fun_linkease_iptables
+    fun_linkease_nat_start
     ;;
 *)
     fun_ntp_sync
-    fun_easyexplorer_start_stop
-    fun_easyexplorer_iptables
-    fun_easyexplorer_nat_start
+    fun_linkease_start_stop
+    fun_linkease_iptables
+    fun_linkease_nat_start
     ;;
 esac

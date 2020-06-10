@@ -3,6 +3,6 @@
     "home_url": "Module_linkease.asp", 
     "md5": "92cc26ac0e5c6f68a283258384ca0f56", 
     "module": "linkease, 
-    "title": "易有云2", 
+    "title": "易有云2.0", 
     "version": "2.0.1"
 }

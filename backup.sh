@@ -7,7 +7,7 @@ if [[ "$unamestr" == 'Darwin' ]]; then
 fi
 # you can do something here
 # this shell scripts will run at the end of build.py scripts
-MODULE=easyexplorer
+MODULE=linkease
 
 
 mkdir -p history

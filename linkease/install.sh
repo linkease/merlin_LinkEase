@@ -2,15 +2,15 @@
 source /koolshare/scripts/base.sh
 MODULE=linkease
 cd /tmp
-killall easy-explorer
-rm -f /koolshare/bin/easy-explorer.log
+killall linkease
+rm -f /koolshare/bin/linkease.log
 rm -f /koolshare/bin/_ffprobe_cache /koolshare/scripts/_ffprobe_cache
 cp -rf /tmp/linkease/bin/* /koolshare/bin/
 cp -rf /tmp/linkease/scripts/* /koolshare/scripts/
 cp -rf /tmp/linkease/webs/* /koolshare/webs/
 cp -rf /tmp/linkease/res/* /koolshare/res/
 
-chmod a+x /koolshare/bin/easy-explorer
+chmod a+x /koolshare/bin/linkease
 chmod a+x /koolshare/scripts/linkease_config.sh
 chmod a+x /koolshare/scripts/linkease_status.sh
 chmod a+x /koolshare/scripts/uninstall_linkease.sh
