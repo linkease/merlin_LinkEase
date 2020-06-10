@@ -34,7 +34,7 @@ def build_module():
         conf = get_or_create()
     except:
         print u"config.json.js file format is incorrect"
-        traceback.print_exc()
+        #traceback.print_exc()
     if "module" not in conf:
         print u" module is not in config.json.js"
         return
