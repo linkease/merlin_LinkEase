@@ -233,11 +233,11 @@ function init(){
     buildswitch();
     toggle_switch();
     version_show();
-    initial_dir();
-    check_dir_path();
+    //initial_dir();
+    //check_dir_path();
     $j("#linkease_website").click(
         function() {
-        window.open("http://" + r_lan_ipaddr + ":8899");
+        window.open("http://" + r_lan_ipaddr + ":8897");
         });
     if (linkease_website_en == "0") {
         $G('linkease_website').disabled = "disabled";
@@ -267,7 +267,7 @@ function check_linkease_status(){
         dataType: 'html',
         
         error: function(xhr){
-            setTimeout("check_linkease_status();", 1000);
+            setTimeout("check_linkease_status();", 2000);
         },
         success: function(response){
             var _cmdBtn = document.getElementById("cmdBtn");
@@ -287,7 +287,7 @@ function check_linkease_status(){
                 noChange_status = 0;
                 //refreshpage();
             }else{
-                setTimeout("check_linkease_status();", 400);
+                setTimeout("check_linkease_status();", 1000);
             }
             _responseLen = response.length;
         }

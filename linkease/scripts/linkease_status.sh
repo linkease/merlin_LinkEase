@@ -12,5 +12,5 @@ else
     echo \<em\>【警告】：进程未运行！\<\/em\> 版本：${linkease_ver} 路由器ID：${linkease_rid}  > /tmp/.linkease.log
 fi
 echo XU6J03M6 >> /tmp/.linkease.log
-sleep 2
-rm -rf /tmp/.linkease.log
+sleep 3
+rm -f /tmp/.linkease.log
