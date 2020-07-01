@@ -11,7 +11,7 @@ rm -f /koolshare/scripts/linkease_status.sh
 rm -f /koolshare/webs/Module_linkease.asp
 rm -f /koolshare/res/icon-linkease.png
 rm -f /koolshare/res/linkease_check.html
-rm -f /koolshare/bin/linkease
+rm -f /koolshare/bin/link-ease
 rm -f /koolshare/bin/linkease.log /tmp/linkease.log
 rm -f /koolshare/bin/_ffprobe_cache /koolshare/scripts/_ffprobe_cache /tmp/_ffprobe_cache
 rm -f /tmp/var/run/linkease.pid

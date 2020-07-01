@@ -3,7 +3,7 @@ eval `dbus export linkease`
 source /koolshare/scripts/base.sh
 alias echo_date='echo $(date +%Y年%m月%d日\ %X):'
 
-BIN=/koolshare/bin/linkease
+BIN=/koolshare/bin/link-ease
 PID_FILE=/var/run/linkease.pid
 
 if [ "$(cat /proc/sys/vm/overcommit_memory)"x != "0"x ];then
@@ -20,10 +20,10 @@ fun_ntp_sync(){
 }
 fun_linkease_start_stop(){
     if [ "${linkease_enable}"x = "1"x ];then
-        killall linkease
-        start-stop-daemon -S -q -b -m -p ${PID_FILE} -x ${BIN} -- -c /tmp -u ${linkease_token} -share ${linkease_dir}
+        killall link-ease
+        start-stop-daemon -S -q -b -m -p ${PID_FILE} -x ${BIN}
     else
-        killall linkease
+        killall link-ease
     fi
 }
 

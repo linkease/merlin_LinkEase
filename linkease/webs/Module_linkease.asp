@@ -693,10 +693,6 @@ var PROTOCOL = "cifs";
         }
         function onSubmitCtrl(o, s) {
             var _form = document.form;
-            if (trim(_form.linkease_token.value) == "" || trim(_form.linkease_dir.value) == "") {
-                alert("提交的表单不能为空!");
-                return false;
-            }
             showSSLoadingBar(5);
             document.form.action_mode.value = s;
             updateOptions();
@@ -945,7 +941,7 @@ var PROTOCOL = "cifs";
                                                 cellspacing="0" bordercolor="#6b8fa3" class="FormTable">
                                                 <thead>
                                                     <tr>
-                                                        <td colspan="2">EasyExplorer - 高级设置</td>
+                                                        <td colspan="2">LinkEase 2.0 - 高级设置</td>
                                                     </tr>
                                                 </thead>
                                                 <tr id="switch_tr">
@@ -1028,12 +1024,12 @@ var PROTOCOL = "cifs";
     </div>
 </body>
 <script type="text/javascript">
-< !--[if !IE]> -->
+<!--[if !IE]> -->
         jQuery.noConflict();
     (function ($) {
         var i = 0;
     })(jQuery);
-< !--< ![endif]-- >
+<!--< ![endif]-- >
 </script>
 
 </html>
